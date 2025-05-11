@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Распределённый калькулятор</title>
+  <!-- Bootstrap CSS из CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding-top: 40px; }
+    .spinner-border { width: 3rem; height: 3rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title mb-0">Распределённый калькулятор выражений</h3>
+          </div>
+          <div class="card-body">
+            <form id="calcForm">
+              <div class="mb-3">
+                <label for="expression" class="form-label">Введите арифметическое выражение</label>
+                <input type="text" class="form-control" id="expression" placeholder="2+2*(2+5)*3" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Вычислить</button>
+            </form>
+            <hr>
+            <div id="result" class="mt-3"></div>
+            <div id="status" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Добавленный раздел для списка запросов -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-secondary text-white">
+            <h3 class="card-title mb-0">Список запросов</h3>
+          </div>
+          <div class="card-body">
+            <ul id="requestsList" class="list-group list-group-flush">
+              <!-- Здесь будут отображаться запросы -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/script.js"></script>
+</body>
+</html>

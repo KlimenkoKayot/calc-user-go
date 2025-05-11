@@ -1,0 +1,41 @@
+body { 
+    padding-top: 40px; 
+}
+
+.spinner-border { 
+    width: 3rem; 
+    height: 3rem; 
+}
+
+.card {
+  max-width: 100%; 
+  overflow: hidden; 
+}
+  
+.list-group-item {
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+  max-width: 100%; 
+  padding: 0.75rem 1.25rem; 
+}
+  
+.list-group-item div {
+  max-width: 100%; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  margin-bottom: 0.5rem; 
+}
+  
+.child-div {
+  width: 100%; 
+  box-sizing: border-box; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+}
+  
+.badge {
+  font-size: 0.9em; 
+  padding: 0.5em 0.75em; 
+}
