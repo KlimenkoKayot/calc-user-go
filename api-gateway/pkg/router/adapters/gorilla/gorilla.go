@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/klimenkokayot/calc-user-go/api-gateway/router/domain"
+	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router/domain"
 )
 
 type AdapterGorilla struct {

@@ -1,4 +1,4 @@
-module github.com/klimenkokayot/calc-user-go/api-gateway/router
+module github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router
 
 go 1.23.7
 

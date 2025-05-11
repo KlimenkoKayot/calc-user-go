@@ -3,8 +3,8 @@ package router
 import (
 	"fmt"
 
-	"github.com/klimenkokayot/calc-user-go/api-gateway/router/adapters/gorilla"
-	"github.com/klimenkokayot/calc-user-go/api-gateway/router/domain"
+	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router/adapters/gorilla"
+	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router/domain"
 )
 
 const (
