@@ -1,0 +1,41 @@
+common:
+  environment: "development"
+  log_level: "debug"
+
+api_gateway:
+  http:
+    host: "0.0.0.0"
+    port: 8080
+  services:
+    auth:
+      url: "http://localhost:8081"
+    calc:
+      url: "http://localhost:8082"
+  router: "gorilla"
+  logger: "zap"
+
+auth:
+  http:
+    host: "0.0.0.0"
+    port: 8081
+    read_timeout: "15s"
+    write_timeout: "15s"
+  database:
+    dsn: "file:auth.db?cache=shared&mode=rwc"
+  jwt:
+    secret: "your-strong-secret-key"
+    access_token_expiry: "15m"
+    refresh_token_expiry: "24h"
+  logger: "zap"
+  router: "gorilla"
+
+calc:
+  orchestrator:
+    port: 8082
+    time_addition_ms: 0
+    time_subtraction_ms: 0
+    time_multiplication_ms: 0
+    time_division_ms: 0
+  agent:
+    workers: 4
+    timeout: "5s"
