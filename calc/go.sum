@@ -17,6 +17,8 @@ github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720 
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15 h1:sYgTbYbSYvKd14pQfviSNKLnJXoOSrv5TeZCBO9EPCk=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202558-69adf9b1d902 h1:4bDAqIJikLpKmnsdvx3T2tQZJOJBZTMJQEZ3AAFzNM0=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202558-69adf9b1d902/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=

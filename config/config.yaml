@@ -1,25 +1,25 @@
 api_gateway:
   http:
-    host: "0.0.0.0"
+    host: "127.0.0.1"
     port: 8080
   services:
     auth:
-      url: "http://localhost:8081"
+      url: "http://127.0.0.1:8081"
     calc:
-      url: "http://localhost:8082"
+      url: "http://127.0.0.1:8082"
   router: "gorilla"
   logger: "zap"
 
 auth:
   http:
-    host: "0.0.0.0"
+    host: "127.0.0.1"
     port: 8081
     read_timeout: "15s"
     write_timeout: "15s"
   database:
-    dsn: "file:auth.db?cache=shared&mode=rwc"
+    dsn: "file:data/auth.db?cache=shared&mode=rwc"
   jwt:
-    secret: "your-strong-secret-key"
+    secret: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
     access_token_expiry: "15m"
     refresh_token_expiry: "24h"
   logger: "zap"

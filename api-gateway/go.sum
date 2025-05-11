@@ -17,10 +17,14 @@ github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-202505112021
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202119-0df2175c9a13/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202400-bd9c851f0d25 h1:OicL3OEP5xeNqv1dB1L6f9i6EPHGni4JxuKGj5ELu7I=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202400-bd9c851f0d25/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202558-69adf9b1d902 h1:TNPbL30RoZIjOuN1J8Zf/wxY38d/9lAaaktFIREAEV8=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202558-69adf9b1d902/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202119-0df2175c9a13 h1:TLKi2vZumAvG7ulA6Ym5oVTdQxpxSb8N5lVwC1y/zbY=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202119-0df2175c9a13/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202400-bd9c851f0d25 h1:MO4WYb6ZJktzJsLC6UsjhMCr4lx0+pxUpSP5I8EODkg=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202400-bd9c851f0d25/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202558-69adf9b1d902 h1:4bDAqIJikLpKmnsdvx3T2tQZJOJBZTMJQEZ3AAFzNM0=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202558-69adf9b1d902/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=

@@ -18,7 +18,7 @@ type TestCase struct {
 
 func TestService(t *testing.T) {
 	// Запуск тестов для каждого метода
-	config, err := config.Load(config.GetConfigPath())
+	config, err := config.Load()
 	if err != nil {
 		log.Fatalf("%s\n", err.Error())
 	}
