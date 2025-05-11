@@ -4,15 +4,14 @@ go 1.23.8
 
 require (
 	github.com/google/uuid v1.6.0
+	github.com/gorilla/mux v1.8.1
 	github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511174032-2d649bd7edba
-	github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router v0.0.0-20250511175840-a42745aaf2c1
 	github.com/spf13/viper v1.20.1
 )
 
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
-	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect

@@ -9,7 +9,6 @@ import (
 	"github.com/klimenkokayot/avito-go/libs/router"
 	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain"
-	"github.com/klimenkokayot/avito-go/services/auth/internal/infrastructure/http/middleware"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/interfaces/http/handlers"
 )
 
@@ -39,13 +38,7 @@ func NewAuthServer(handler *handlers.AuthHandler, cfg *config.Config, logger log
 		cfg.Server.WriteTimeout,
 		cfg,
 	}
-
 	err = server.setupRoutes()
-	if err != nil {
-		return nil, err
-	}
-
-	err = server.setupMiddleware()
 	if err != nil {
 		return nil, err
 	}
@@ -76,13 +69,6 @@ func (a *AuthServer) setupRoutes() error {
 	})
 
 	a.logger.OK("Успешно.")
-	return nil
-}
-
-func (a *AuthServer) setupMiddleware() error {
-	a.router.Use(middleware.CorsMiddleware())
-	a.router.Use(middleware.LoggerMiddleware(a.logger))
-	a.router.Use(middleware.TimeoutMiddleware(a.readTimeout, a.writeTimeout))
 	return nil
 }
 

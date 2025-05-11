@@ -4,26 +4,22 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/config"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/domain"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/infrastructure/http/middleware"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger"
-	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/router"
 )
 
 type ProxyServer struct {
-	mux     router.Router
+	mux     *mux.Router
 	handler domain.ProxyHandler
 	logger  logger.Logger
 	config  *config.Config
 }
 
 func (p *ProxyServer) setupRoutes() {
-	p.mux.POST("/api/v1/register", p.handler.Proxy)
-	p.mux.GET("/api/v1/register", p.handler.Proxy)
-	p.mux.OPTIONS("/api/v1/register", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusNoContent)
-	})
+	p.mux.PathPrefix("/").Handler(p.handler)
 }
 
 func (p *ProxyServer) setupMiddlewares() {
@@ -37,12 +33,7 @@ func (p *ProxyServer) Run() error {
 }
 
 func NewProxyServer(handler domain.ProxyHandler, logger logger.Logger, config *config.Config) (domain.ProxyServer, error) {
-	mux, err := router.NewAdapter(&router.Config{
-		Name: config.Router,
-	})
-	if err != nil {
-		return nil, err
-	}
+	mux := mux.NewRouter()
 	return &ProxyServer{
 		mux:     mux,
 		handler: handler,
