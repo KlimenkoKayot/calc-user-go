@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/app"
@@ -16,6 +17,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Println(cfg.ApiGateway.Logger)
 
 	logger, err := logger.NewAdapter(&logger.Config{
 		Adapter: cfg.ApiGateway.Logger,
