@@ -27,7 +27,7 @@ func (p *ProxyService) Proxy(path string) (string, error) {
 		return url.JoinPath(p.config.ApiGateway.Services.Auth.URL, "auth", "login")
 	default:
 		p.logger.Debug("Редирект в Calc.")
-		return url.JoinPath(p.config.ApiGateway.Services.Auth.URL, path)
+		return url.JoinPath(p.config.ApiGateway.Services.Calc.URL, path)
 	}
 }
 
