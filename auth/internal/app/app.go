@@ -28,7 +28,7 @@ func NewApplication(cfg *config.Config, logger logger.Logger) (domain.Applicatio
 		return nil, wrapError("инициализации репозитория", err)
 	}
 
-	tokenManager, err := jwt.NewTokenManager(cfg.JwtSecretKey, cfg.AccessTokenExpiration, cfg.RefreshTokenExpiration)
+	tokenManager, err := jwt.NewTokenManager(cfg.JWT.Secret, cfg.JWT.AccessTokenExpiry, cfg.JWT.RefreshTokenExpiry)
 	if err != nil {
 		return nil, err
 	}

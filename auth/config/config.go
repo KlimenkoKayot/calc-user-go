@@ -2,80 +2,77 @@ package config
 
 import (
 	"os"
-	"strconv"
 	"time"
 
-	"github.com/joho/godotenv"
+	"github.com/spf13/viper"
 )
 
 type Config struct {
-	Logger                 string
-	Router                 string
-	ServerPort             int
-	DatabaseDSN            string
-	TokenExpirationMinutes time.Duration
-	ReadTimeoutSeconds     time.Duration
-	WriteTimeoutSeconds    time.Duration
-	JwtSecretKey           string
-	AccessTokenExpiration  time.Duration
-	RefreshTokenExpiration time.Duration
+	Logger   string
+	Router   string
+	Server   ServerConfig
+	Database DatabaseConfig
+	JWT      JWTConfig
+}
+
+type ServerConfig struct {
+	Port         int
+	ReadTimeout  time.Duration
+	WriteTimeout time.Duration
+}
+
+type DatabaseConfig struct {
+	DSN string
+}
+
+type JWTConfig struct {
+	Secret             string
+	AccessTokenExpiry  time.Duration
+	RefreshTokenExpiry time.Duration
 }
 
 func Load(path string) (*Config, error) {
-	if err := godotenv.Load(); err != nil {
+	viper.SetConfigName("config") // имя файла конфигурации без расширения
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath(path)
+	viper.AddConfigPath(".") // дополнительно ищем в текущей директории
+
+	// Устанавливаем значения по умолчанию для SQLite
+	viper.SetDefault("database.dsn", "file:auth.db?cache=shared&mode=rwc")
+
+	// Чтение конфигурации из файла
+	if err := viper.ReadInConfig(); err != nil {
 		return nil, err
 	}
 
-	readTimeoutString := os.Getenv("READ_TIMEOUT")
-	readTimeoutInt, err := strconv.Atoi(readTimeoutString)
-	if err != nil {
-		return nil, err
-	}
-	readTimeoutSeconds := time.Second * time.Duration(readTimeoutInt)
+	// Поддержка переменных окружения (переопределяют значения из файла)
+	viper.AutomaticEnv()
 
-	writeTimeoutString := os.Getenv("WRITE_TIMEOUT")
-	writeTimeoutInt, err := strconv.Atoi(writeTimeoutString)
-	if err != nil {
-		return nil, err
-	}
-	writeTimeoutSeconds := time.Second * time.Duration(writeTimeoutInt)
-
-	databaseDSN := os.Getenv("DATABASE_DSN")
-
-	logger := os.Getenv("LOGGER")
-	router := os.Getenv("ROUTER")
-
-	serverPortString := os.Getenv("SERVER_PORT")
-	serverPort, err := strconv.Atoi(serverPortString)
-	if err != nil {
-		return nil, err
+	// Для совместимости можно оставить поддержку .env файлов
+	if _, err := os.Stat(".env"); err == nil {
+		viper.SetConfigFile(".env")
+		if err := viper.MergeInConfig(); err != nil {
+			return nil, err
+		}
 	}
 
-	jwtSecretKey := os.Getenv("JWT_SECRET")
-
-	accessTokenExpirationString := os.Getenv("ACCESS_TOKEN_EXPIRATION_TIMEOUT")
-	accessTokenExpirationInt, err := strconv.Atoi(accessTokenExpirationString)
-	if err != nil {
-		return nil, err
+	config := &Config{
+		Logger: viper.GetString("logger"),
+		Router: viper.GetString("router"),
+		Server: ServerConfig{
+			Port:         viper.GetInt("server.port"),
+			ReadTimeout:  viper.GetDuration("server.read_timeout"),
+			WriteTimeout: viper.GetDuration("server.write_timeout"),
+		},
+		Database: DatabaseConfig{
+			DSN: viper.GetString("database.dsn"),
+		},
+		JWT: JWTConfig{
+			Secret:             viper.GetString("jwt.secret"),
+			AccessTokenExpiry:  viper.GetDuration("jwt.access_token_expiration"),
+			RefreshTokenExpiry: viper.GetDuration("jwt.refresh_token_expiration"),
+		},
 	}
-	accessTokenExpiration := time.Minute * time.Duration(accessTokenExpirationInt)
 
-	refreshTokenExpirationString := os.Getenv("REFRESH_TOKEN_EXPIRATION_TIMEOUT")
-	refreshTokenExpirationInt, err := strconv.Atoi(refreshTokenExpirationString)
-	if err != nil {
-		return nil, err
-	}
-	refreshTokenExpiration := time.Hour * time.Duration(refreshTokenExpirationInt)
-
-	return &Config{
-		Router:                 router,
-		Logger:                 logger,
-		ServerPort:             serverPort,
-		DatabaseDSN:            databaseDSN,
-		ReadTimeoutSeconds:     readTimeoutSeconds,
-		WriteTimeoutSeconds:    writeTimeoutSeconds,
-		JwtSecretKey:           jwtSecretKey,
-		AccessTokenExpiration:  accessTokenExpiration,
-		RefreshTokenExpiration: refreshTokenExpiration,
-	}, nil
+	return config, nil
 }

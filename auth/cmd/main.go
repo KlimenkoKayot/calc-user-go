@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	config, err := config.Load("")
+	config, err := config.Load("./config/")
 	if err != nil {
 		log.Fatalf("Ошибка при инициализации config`a: %s.", err.Error())
 	}

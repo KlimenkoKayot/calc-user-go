@@ -35,8 +35,8 @@ func NewAuthServer(handler *handlers.AuthHandler, cfg *config.Config, logger log
 		handler,
 		router,
 		logger,
-		cfg.ReadTimeoutSeconds,
-		cfg.WriteTimeoutSeconds,
+		cfg.Server.ReadTimeout,
+		cfg.Server.WriteTimeout,
 		cfg,
 	}
 
@@ -87,6 +87,6 @@ func (a *AuthServer) setupMiddleware() error {
 }
 
 func (a *AuthServer) Run() error {
-	a.logger.Info("Сервер запущен.", logger.Field{Key: "port", Value: a.cfg.ServerPort})
-	return http.ListenAndServe(fmt.Sprintf(":%d", a.cfg.ServerPort), a.router)
+	a.logger.Info("Сервер запущен.", logger.Field{Key: "port", Value: a.cfg.Server.Port})
+	return http.ListenAndServe(fmt.Sprintf(":%d", a.cfg.Server.Port), a.router)
 }

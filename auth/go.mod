@@ -5,13 +5,27 @@ go 1.23.7
 require (
 	github.com/google/uuid v1.6.0
 	github.com/jmoiron/sqlx v1.4.0
-	github.com/joho/godotenv v1.5.1
 	github.com/klimenkokayot/avito-go/libs/jwt v0.0.0-20250429212829-5d8fa29cc7b2
 	github.com/klimenkokayot/avito-go/libs/logger v0.0.0-20250429212829-5d8fa29cc7b2
 	github.com/klimenkokayot/avito-go/libs/router v0.0.0-20250429212829-5d8fa29cc7b2
-	github.com/lib/pq v1.10.9
+	github.com/mattn/go-sqlite3 v1.14.22
+	github.com/spf13/viper v1.20.1
 	go.uber.org/mock v0.5.2
 	golang.org/x/crypto v0.37.0
+)
+
+require (
+	github.com/fsnotify/fsnotify v1.8.0 // indirect
+	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
+	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
+	github.com/sagikazarmark/locafero v0.7.0 // indirect
+	github.com/sourcegraph/conc v0.3.0 // indirect
+	github.com/spf13/afero v1.12.0 // indirect
+	github.com/spf13/cast v1.7.1 // indirect
+	github.com/spf13/pflag v1.0.6 // indirect
+	github.com/subosito/gotenv v1.6.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 require (

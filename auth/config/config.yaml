@@ -1,0 +1,15 @@
+logger: "zap"
+router: "gorilla"
+
+server:
+  port: 8081
+  read_timeout: 1s
+  write_timeout: 1s
+
+database:
+  dsn: "file:data/auth.db?cache=shared&mode=rwc"
+
+jwt:
+  secret: "842InBOAwJZaqUlr8VJz94/Jymv/RMh+twaUx9mTPMs="
+  access_token_expiration: 30m
+  refresh_token_expiration: 168h

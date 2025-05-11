@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
@@ -22,17 +22,14 @@ type UserRepository struct {
 
 func NewUserRepository(cfg *config.Config, repoLogger logger.Logger) (domain.UserRepository, error) {
 	repoLogger.Info("Инициализация user-репозитория.")
-	dsn := cfg.DatabaseDSN
+	dsn := cfg.Database.DSN
 	if dsn == "" {
-		repoLogger.Warn("Пустой dsn адрес.", logger.Field{
-			Key:   "err",
-			Value: ErrEmptyDSN.Error(),
-		})
-		return nil, ErrEmptyDSN
+		// Установим значение по умолчанию для SQLite
+		dsn = "file:auth.db?cache=shared&mode=rwc"
 	}
 
 	repoLogger.Info("Подключение по DSN.")
-	db, err := sqlx.Connect("postgres", dsn)
+	db, err := sqlx.Connect("sqlite3", dsn)
 	if err != nil {
 		repoLogger.Error("Ошибка при подключении к sqlx.", logger.Field{
 			Key:   "err",
@@ -42,18 +39,19 @@ func NewUserRepository(cfg *config.Config, repoLogger logger.Logger) (domain.Use
 	}
 	repoLogger.OK("Подключение к базе данных выполнено.")
 
-	_, err = db.Exec(`DROP TABLE IF EXISTS users;`)
+	// Включение foreign key constraints для SQLite
+	_, err = db.Exec(`PRAGMA foreign_keys = ON;`)
 	if err != nil {
-		repoLogger.Error("Ошибка при сбросе таблицы.", logger.Field{
+		repoLogger.Error("Ошибка при включении foreign keys.", logger.Field{
 			Key:   "err",
 			Value: err.Error(),
 		})
-		return nil, fmt.Errorf("ошибка при сбросе таблицы: %w", err)
+		return nil, fmt.Errorf("ошибка при включении foreign keys: %w", err)
 	}
 
 	_, err = db.Exec(`
-		CREATE TABLE users (
-			id UUID PRIMARY KEY,
+		CREATE TABLE IF NOT EXISTS users (
+			id TEXT PRIMARY KEY,
 			login TEXT UNIQUE NOT NULL,
 			secret TEXT NOT NULL,
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -79,7 +77,7 @@ func (ur *UserRepository) FindByLogin(login string) (*domain.User, error) {
 	user := &domain.User{}
 	err := ur.db.Get(
 		user,
-		"SELECT id, login, secret, created_at FROM users WHERE login = $1",
+		"SELECT id, login, secret, created_at FROM users WHERE login = ?",
 		login,
 	)
 	if err == sql.ErrNoRows {
@@ -92,7 +90,7 @@ func (ur *UserRepository) FindByLogin(login string) (*domain.User, error) {
 
 func (ur *UserRepository) ExistByLogin(login string) (bool, error) {
 	var exists bool
-	query := "SELECT EXISTS(SELECT 1 FROM users WHERE login = $1)"
+	query := "SELECT EXISTS(SELECT 1 FROM users WHERE login = ?)"
 	err := ur.db.QueryRow(query, login).Scan(&exists)
 	if err != nil {
 		return false, fmt.Errorf("ошибка при exist по логину: %w", err)
@@ -114,7 +112,7 @@ func (ur *UserRepository) Add(login string, secret string) error {
 
 	id := uuid.String()
 	_, err = ur.db.Exec(
-		"INSERT INTO users (id, login, secret) VALUES ($1, $2, $3)",
+		"INSERT INTO users (id, login, secret) VALUES (?, ?, ?)",
 		id, login, secret,
 	)
 	if err != nil {
@@ -125,7 +123,7 @@ func (ur *UserRepository) Add(login string, secret string) error {
 
 func (ur *UserRepository) Check(login, pass string) (bool, error) {
 	var secret string
-	err := ur.db.QueryRow("SELECT secret FROM users WHERE login = $1", login).Scan(&secret)
+	err := ur.db.QueryRow("SELECT secret FROM users WHERE login = ?", login).Scan(&secret)
 	if err == sql.ErrNoRows {
 		return false, nil
 	} else if err != nil {
