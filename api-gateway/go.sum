@@ -27,6 +27,8 @@ github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-202505112016
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201651-143ca9c5bcd0/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202001-efeae78aba9d h1:D8fUpKBJ8di7HLK1BtLecExOHPyVcdeQRAEHmVxEVIs=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202001-efeae78aba9d/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202119-0df2175c9a13 h1:3GPOHFcFhXLW/hZYewnvw9O7zqXiz+QCCXDKJENyhsw=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511202119-0df2175c9a13/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720 h1:SghyCYAYhurlhQquAsQK7JSXgpc0MamjKWIL8c3BhDA=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15 h1:sYgTbYbSYvKd14pQfviSNKLnJXoOSrv5TeZCBO9EPCk=
@@ -41,6 +43,8 @@ github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201651-143ca9c5bcd0 
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201651-143ca9c5bcd0/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202001-efeae78aba9d h1:II4Yd/WFWyPLRCuMxxHUee5mBPGAvEBk6PNYlWMupOw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202001-efeae78aba9d/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202119-0df2175c9a13 h1:TLKi2vZumAvG7ulA6Ym5oVTdQxpxSb8N5lVwC1y/zbY=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511202119-0df2175c9a13/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
