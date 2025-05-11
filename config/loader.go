@@ -1,82 +1,75 @@
 package config
 
 import (
-	"bytes"
-	"embed"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/spf13/viper"
 )
 
-//go:embed config.yaml
-var embeddedConfig embed.FS
-
-// findProjectRoot ищет корневую директорию проекта по маркерному файлу
-func findProjectRoot(marker string) (string, error) {
-	current, err := os.Getwd()
-	if err != nil {
-		return "", fmt.Errorf("failed to get working directory: %w", err)
-	}
-
-	for {
-		// Проверяем наличие маркерного файла
-		markerPath := filepath.Join(current, marker)
-		if _, err := os.Stat(markerPath); err == nil {
-			return current, nil
-		}
-
-		// Поднимаемся на уровень выше
-		parent := filepath.Dir(current)
-		if parent == current {
-			return "", fmt.Errorf("project root not found (reached filesystem root)")
-		}
-		current = parent
-	}
-}
-
-// Load загружает конфигурацию, автоматически находя корень проекта
+// Load загружает конфигурацию из YAML файла с учетом правильного пути
 func Load() (*Config, error) {
-	// 1. Пытаемся найти корень проекта
-	root, err := findProjectRoot(".projectroot")
-	if err != nil {
-		return nil, fmt.Errorf("failed to find project root: %w", err)
-	}
-
-	// 2. Пробуем загрузить из файла
-	cfgPath := filepath.Join(root, "config", "config.yaml")
 	v := viper.New()
-	v.SetConfigFile(cfgPath)
 
-	if err := v.ReadInConfig(); err == nil {
-		// Успешно загрузили из файла
-		return unmarshalConfig(v)
-	}
-
-	// 3. Если файл не найден, пробуем встроенную конфигурацию
-	file, err := embeddedConfig.ReadFile("config.yaml")
+	// 1. Определяем абсолютный путь к config.yaml
+	configPath, err := getConfigPath()
 	if err != nil {
-		return nil, fmt.Errorf("failed to read embedded config: %w", err)
+		return nil, fmt.Errorf("failed to get config path: %w", err)
 	}
 
+	// 2. Настраиваем Viper
+	v.SetConfigFile(configPath)
 	v.SetConfigType("yaml")
-	if err := v.ReadConfig(bytes.NewReader(file)); err != nil {
-		return nil, fmt.Errorf("failed to read embedded config: %w", err)
+
+	// 3. Читаем конфиг
+	if err := v.ReadInConfig(); err != nil {
+		return nil, fmt.Errorf("failed to read config file at %s: %w", configPath, err)
 	}
 
-	return unmarshalConfig(v)
-}
-
-// unmarshalConfig выполняет общие шаги для unmarshal конфига
-func unmarshalConfig(v *viper.Viper) (*Config, error) {
-	// Поддержка переменных окружения
+	// 4. Подключаем переменные окружения
 	v.AutomaticEnv()
 
+	// 5. Выводим информацию о загруженном конфиге (для отладки)
+	log.Printf("Successfully loaded config from: %s", v.ConfigFileUsed())
+
+	// 6. Парсим конфиг в структуру
 	var cfg Config
 	if err := v.Unmarshal(&cfg); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal config: %w", err)
 	}
 
 	return &cfg, nil
+}
+
+// getConfigPath возвращает абсолютный путь к config.yaml
+func getConfigPath() (string, error) {
+	// Вариант 1: Используем переменную окружения
+	if customPath := os.Getenv("CONFIG_PATH"); customPath != "" {
+		if filepath.IsAbs(customPath) {
+			return customPath, nil
+		}
+		return filepath.Abs(customPath)
+	}
+
+	// Вариант 2: Автоматический поиск относительно исполняемого файла
+	_, currentFilePath, _, _ := runtime.Caller(0)
+	projectRoot := filepath.Dir(filepath.Dir(filepath.Dir(currentFilePath)))
+	configPath := filepath.Join(projectRoot, "config", "config.yaml")
+
+	// Проверяем существование файла
+	if _, err := os.Stat(configPath); err == nil {
+		return configPath, nil
+	}
+
+	// Вариант 3: Поиск в текущей директории
+	currentDir, _ := os.Getwd()
+	localConfigPath := filepath.Join(currentDir, "config.yaml")
+	if _, err := os.Stat(localConfigPath); err == nil {
+		return localConfigPath, nil
+	}
+
+	return "", fmt.Errorf("config file not found in: %s or %s", configPath, localConfigPath)
 }
