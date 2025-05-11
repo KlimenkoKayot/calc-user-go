@@ -37,6 +37,8 @@ func Load() (*Config, error) {
 	v := viper.New()
 	v.SetConfigFile(filepath.Join(root, "config", "config.yaml"))
 
+	fmt.Println(filepath.Join(root, "config", "config.yaml"))
+
 	// Устанавливаем значения по умолчанию
 	v.SetDefault("common.environment", "development")
 	v.SetDefault("common.log_level", "debug")
