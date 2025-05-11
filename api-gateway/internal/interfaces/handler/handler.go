@@ -20,13 +20,17 @@ func (p *ProxyHandler) Proxy(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Ошибка при проксировании запроса.", http.StatusInternalServerError)
 		return
 	}
+	p.logger.Info("Запрос перенаправлен.", logger.Field{
+		Key:   "url",
+		Value: path,
+	})
 	http.Redirect(w, r, path, http.StatusFound)
 }
 
-func NewProxyService(service domain.ProxyService, logger logger.Logger, config *config.Config) domain.ProxyHandler {
+func NewProxyService(service domain.ProxyService, logger logger.Logger, config *config.Config) (domain.ProxyHandler, error) {
 	return &ProxyHandler{
 		service: service,
 		logger:  logger,
 		config:  config,
-	}
+	}, nil
 }
