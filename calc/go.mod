@@ -23,7 +23,7 @@ require (
 )
 
 require (
-	github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720
+	github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
