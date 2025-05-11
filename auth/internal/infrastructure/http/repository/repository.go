@@ -24,7 +24,6 @@ func NewUserRepository(cfg *config.Config, repoLogger logger.Logger) (domain.Use
 	repoLogger.Info("Инициализация user-репозитория.")
 	dsn := cfg.Auth.Database.DSN
 	if dsn == "" {
-		// Установим значение по умолчанию для SQLite
 		dsn = "file:auth.db?cache=shared&mode=rwc"
 	}
 
