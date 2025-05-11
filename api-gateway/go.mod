@@ -12,8 +12,8 @@ require github.com/spf13/viper v1.20.1 // indirect
 require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
-	github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201407-0392df37e955
-	github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201407-0392df37e955
+	github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201521-7d747d10bb97
+	github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201521-7d747d10bb97
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/sagikazarmark/locafero v0.9.0 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect

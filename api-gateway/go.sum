@@ -19,12 +19,16 @@ github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-202505112010
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201040-211a53ba5b15/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201407-0392df37e955 h1:N50LKAZvVb0SIzCSYT+5+dcsL4ranT75zRWZ+orXUqs=
 github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201407-0392df37e955/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201521-7d747d10bb97 h1:/vSPZShuEMyIlFXrga3dEv9M8FJnyKiZBGbuUjHTBtQ=
+github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger v0.0.0-20250511201521-7d747d10bb97/go.mod h1:W1L9qVRQOQEfigOANOpUNDebcdXSZMcBo4k9Fe77NVs=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720 h1:SghyCYAYhurlhQquAsQK7JSXgpc0MamjKWIL8c3BhDA=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511194806-daafd08b7720/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15 h1:sYgTbYbSYvKd14pQfviSNKLnJXoOSrv5TeZCBO9EPCk=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201040-211a53ba5b15/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201407-0392df37e955 h1:lMfiDUd2OtcxJErACs/E9mYPr8RVtWkggP5AampFjyk=
 github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201407-0392df37e955/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201521-7d747d10bb97 h1:CsbgkAsYLthcETgHk6fRZNPPgTLzGyzVMLClcB/V9gU=
+github.com/klimenkokayot/calc-user-go/config v0.0.0-20250511201521-7d747d10bb97/go.mod h1:MsguoWDT4x2q8O224YWiK/s4BJYqO/jufNCfEMWBtQw=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=

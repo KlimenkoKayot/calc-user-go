@@ -45,7 +45,6 @@ func Load() (*Config, error) {
 
 	v.SetConfigName("config")
 	v.SetConfigType("yaml")
-	v.AddConfigPath(".")
 
 	// Чтение конфигурационного файла
 	if err := v.ReadInConfig(); err != nil {
