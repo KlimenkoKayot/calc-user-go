@@ -8,10 +8,10 @@ import (
 	"net/http"
 
 	"github.com/klimenkokayot/avito-go/libs/logger"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/model"
 	domain "github.com/klimenkokayot/avito-go/services/auth/internal/domain/repository"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/service"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type AuthHandler struct {

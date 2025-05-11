@@ -5,12 +5,12 @@ import (
 
 	"github.com/klimenkokayot/avito-go/libs/jwt"
 	"github.com/klimenkokayot/avito-go/libs/logger"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/service"
 	server "github.com/klimenkokayot/avito-go/services/auth/internal/infrastructure/http"
 	repo "github.com/klimenkokayot/avito-go/services/auth/internal/infrastructure/http/repository"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/interfaces/http/handlers"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type Application struct {
@@ -28,7 +28,7 @@ func NewApplication(cfg *config.Config, logger logger.Logger) (domain.Applicatio
 		return nil, wrapError("инициализации репозитория", err)
 	}
 
-	tokenManager, err := jwt.NewTokenManager(cfg.JWT.Secret, cfg.JWT.AccessTokenExpiry, cfg.JWT.RefreshTokenExpiry)
+	tokenManager, err := jwt.NewTokenManager(cfg.Auth.Jwt.Secret, cfg.Auth.Jwt.AccessTokenExpiry, cfg.Auth.Jwt.RefreshTokenExpiry)
 	if err != nil {
 		return nil, err
 	}

@@ -8,8 +8,8 @@ import (
 
 	"github.com/gorilla/mux"
 	client "github.com/klimenkokayot/calc-net-go/internal/orchestrator/client"
-	config "github.com/klimenkokayot/calc-net-go/internal/orchestrator/config"
 	handler "github.com/klimenkokayot/calc-net-go/internal/orchestrator/server/handler"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 // Структура сервера
@@ -43,8 +43,8 @@ func (s *Server) Run() error {
 		return err
 	}
 
-	log.Printf("Server started at port :%d\n", s.config.Port)
-	if err := http.ListenAndServe(fmt.Sprintf(":%d", s.config.Port), s.mux); err != nil {
+	log.Printf("Server started at port :%d\n", s.config.Calc.Orchestrator.Port)
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", s.config.Calc.Orchestrator.Port), s.mux); err != nil {
 		return err
 	}
 	return nil

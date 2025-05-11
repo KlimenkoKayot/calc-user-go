@@ -4,16 +4,16 @@ import (
 	"log"
 
 	client "github.com/klimenkokayot/calc-net-go/internal/orchestrator/client"
-	config "github.com/klimenkokayot/calc-net-go/internal/orchestrator/config"
 	orchestrator "github.com/klimenkokayot/calc-net-go/internal/orchestrator/server"
 	handler "github.com/klimenkokayot/calc-net-go/internal/orchestrator/server/handler"
 	service "github.com/klimenkokayot/calc-net-go/internal/orchestrator/service"
 	"github.com/klimenkokayot/calc-net-go/pkg/logger"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 func main() {
 	// Создаем конфиг
-	config, err := config.NewConfig()
+	config, err := config.Load()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,7 +27,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	orchestratorClient := client.NewAuthClient(config.AuthBaseURL, logger)
+	orchestratorClient := client.NewAuthClient(config.ApiGateway.Services.Auth.URL, logger)
 	server, err := orchestrator.NewServer(config, orchestratorHandler, orchestratorClient)
 	if err != nil {
 		log.Fatal(err)

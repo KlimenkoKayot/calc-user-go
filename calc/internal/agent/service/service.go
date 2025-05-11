@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	config "github.com/klimenkokayot/calc-net-go/internal/agent/config"
 	worker "github.com/klimenkokayot/calc-net-go/internal/agent/worker"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 // Методы бизнес-логики агента
@@ -21,9 +21,9 @@ type AgentService struct {
 // Новый агент, конфиг обязателен
 func NewAgentService(config config.Config) *AgentService {
 	return &AgentService{
-		fmt.Sprintf("http://127.0.0.1:%d/internal/task", config.OrchestratorPort),
-		config.AgentSleepTime,
-		config.ComputingPower,
+		fmt.Sprintf("http://127.0.0.1:%d/internal/task", config.Calc.Orchestrator.Port),
+		config.Calc.Agent.Timeout,
+		uint64(config.Calc.Agent.Workers),
 		&sync.WaitGroup{},
 	}
 }

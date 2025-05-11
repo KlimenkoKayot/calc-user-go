@@ -4,11 +4,6 @@ import (
 	"time"
 )
 
-type CommonConfig struct {
-	Environment string `yaml:"environment"`
-	LogLevel    string `yaml:"log_level"`
-}
-
 type ApiGatewayConfig struct {
 	Http struct {
 		Host string `yaml:"host"`
@@ -64,7 +59,6 @@ type CalcConfig struct {
 }
 
 type Config struct {
-	Common     CommonConfig     `yaml:"common"`
 	ApiGateway ApiGatewayConfig `yaml:"api_gateway"`
 	Auth       AuthConfig       `yaml:"auth"`
 	Calc       CalcConfig       `yaml:"calc"`

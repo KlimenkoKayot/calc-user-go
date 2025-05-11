@@ -1,5 +1,0 @@
-auth_url: "http://127.0.0.1:8081"
-calc_url: "http://127.0.0.1:8082"
-port: 8080
-router: "gorilla"
-logger: "zap"

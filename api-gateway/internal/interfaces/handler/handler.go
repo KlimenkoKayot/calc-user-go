@@ -5,9 +5,9 @@ import (
 	"net/http/httputil"
 	"net/url"
 
-	"github.com/klimenkokayot/calc-user-go/api-gateway/config"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/domain"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type ProxyHandler struct {

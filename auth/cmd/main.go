@@ -4,18 +4,18 @@ import (
 	"log"
 
 	"github.com/klimenkokayot/avito-go/libs/logger"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/app"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 func main() {
-	config, err := config.Load("./config/")
+	config, err := config.Load()
 	if err != nil {
 		log.Fatalf("Ошибка при инициализации config`a: %s.", err.Error())
 	}
 
 	logger, err := logger.NewAdapter(&logger.Config{
-		Adapter: config.Logger,
+		Adapter: config.Auth.Logger,
 		Level:   logger.LevelDebug - 1,
 	})
 	if err != nil {

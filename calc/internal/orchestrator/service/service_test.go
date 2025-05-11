@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	config "github.com/klimenkokayot/calc-net-go/internal/orchestrator/config"
 	service "github.com/klimenkokayot/calc-net-go/internal/orchestrator/service"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/models"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type TestCase struct {
@@ -18,7 +18,7 @@ type TestCase struct {
 
 func TestService(t *testing.T) {
 	// Запуск тестов для каждого метода
-	config, err := config.NewConfig()
+	config, err := config.Load(config.GetConfigPath())
 	if err != nil {
 		log.Fatalf("%s\n", err.Error())
 	}

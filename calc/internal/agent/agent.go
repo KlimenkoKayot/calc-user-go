@@ -3,8 +3,8 @@ package agent
 import (
 	"log"
 
-	config "github.com/klimenkokayot/calc-net-go/internal/agent/config"
 	"github.com/klimenkokayot/calc-net-go/internal/agent/service"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 // Структура агента, нужен порт и экземпляр сервиса
@@ -16,7 +16,7 @@ type Agent struct {
 // Создание нового агента
 func NewAgent() (*Agent, error) {
 	// Получение конфига
-	config, err := config.NewConfig()
+	config, err := config.Load()
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func NewAgent() (*Agent, error) {
 	service := service.NewAgentService(*config)
 	return &Agent{
 		service,
-		config.OrchestratorPort,
+		config.Calc.Orchestrator.Port,
 	}, nil
 }
 

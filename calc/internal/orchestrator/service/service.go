@@ -5,12 +5,12 @@ import (
 	"sync"
 	"time"
 
-	config "github.com/klimenkokayot/calc-net-go/internal/orchestrator/config"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/customList"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/models"
 	orderedmap "github.com/klimenkokayot/calc-net-go/internal/shared/orderedMap"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/utils"
 	"github.com/klimenkokayot/calc-net-go/pkg/rpn"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 // Структура сервиса, для удобства некоторые переменные из конфига перенесены сюда
@@ -35,10 +35,10 @@ type OrchestratorService struct {
 // Создает новый экземпляр сервиса оркестартора
 func NewOrchestratorService(config *config.Config) *OrchestratorService {
 	return &OrchestratorService{
-		time.Duration(config.TimeAdditionMs),
-		time.Duration(config.TimeSubtractionMs),
-		time.Duration(config.TimeMultiplicationsMs),
-		time.Duration(config.TimeDivisionsMs),
+		time.Duration(config.Calc.Orchestrator.TimeAdditionMs),
+		time.Duration(config.Calc.Orchestrator.TimeSubtractionMs),
+		time.Duration(config.Calc.Orchestrator.TimeMultiplicationMs),
+		time.Duration(config.Calc.Orchestrator.TimeDivisionMs),
 
 		make(map[uint]*customList.Node, 0),
 		make(map[uint]*models.Expression, 0),

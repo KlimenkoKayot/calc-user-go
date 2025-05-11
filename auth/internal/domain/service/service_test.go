@@ -5,13 +5,13 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/model"
 	domain "github.com/klimenkokayot/avito-go/services/auth/internal/domain/repository"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/service"
 	"github.com/klimenkokayot/avito-go/services/auth/mocks/jwt"
 	"github.com/klimenkokayot/avito-go/services/auth/mocks/logger"
 	"github.com/klimenkokayot/avito-go/services/auth/mocks/repository"
+	"github.com/klimenkokayot/calc-user-go/config"
 	"go.uber.org/mock/gomock"
 )
 

@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/klimenkokayot/calc-user-go/api-gateway/config"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/domain"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/infrastructure/http/middleware"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type ProxyServer struct {
@@ -29,7 +29,7 @@ func (p *ProxyServer) setupMiddlewares() {
 func (p *ProxyServer) Run() error {
 	p.setupMiddlewares()
 	p.setupRoutes()
-	return http.ListenAndServe(fmt.Sprintf(":%d", p.config.Port), p.mux)
+	return http.ListenAndServe(fmt.Sprintf(":%d", p.config.ApiGateway.Http.Port), p.mux)
 }
 
 func NewProxyServer(handler domain.ProxyHandler, logger logger.Logger, config *config.Config) (domain.ProxyServer, error) {

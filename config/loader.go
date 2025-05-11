@@ -1,31 +1,28 @@
 package config
 
 import (
-	"os"
-	"path/filepath"
+	"bytes"
+	"embed"
 
 	"github.com/spf13/viper"
 )
 
-func Load(path string) (*Config, error) {
+//go:embed config.yaml
+var configFS embed.FS
+
+func Load() (*Config, error) {
 	v := viper.New()
-
-	// Устанавливаем значения по умолчанию
-	v.SetDefault("common.environment", "development")
-	v.SetDefault("common.log_level", "debug")
-
-	v.SetConfigName("config")
 	v.SetConfigType("yaml")
-	v.AddConfigPath(path)
-	v.AddConfigPath(".")
 
-	// Чтение конфигурационного файла
-	if err := v.ReadInConfig(); err != nil {
+	// Читаем из встроенного файла
+	file, err := configFS.ReadFile("config.yaml")
+	if err != nil {
 		return nil, err
 	}
 
-	// Поддержка переменных окружения
-	v.AutomaticEnv()
+	if err := v.ReadConfig(bytes.NewReader(file)); err != nil {
+		return nil, err
+	}
 
 	var cfg Config
 	if err := v.Unmarshal(&cfg); err != nil {
@@ -33,12 +30,4 @@ func Load(path string) (*Config, error) {
 	}
 
 	return &cfg, nil
-}
-
-func GetConfigPath() string {
-	configPath := os.Getenv("CONFIG_PATH")
-	if configPath == "" {
-		configPath = "config/config.yaml"
-	}
-	return filepath.Clean(configPath)
 }

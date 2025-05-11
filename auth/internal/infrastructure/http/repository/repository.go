@@ -9,8 +9,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/klimenkokayot/avito-go/libs/logger"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	domain "github.com/klimenkokayot/avito-go/services/auth/internal/domain/repository"
+	"github.com/klimenkokayot/calc-user-go/config"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -22,7 +22,7 @@ type UserRepository struct {
 
 func NewUserRepository(cfg *config.Config, repoLogger logger.Logger) (domain.UserRepository, error) {
 	repoLogger.Info("Инициализация user-репозитория.")
-	dsn := cfg.Database.DSN
+	dsn := cfg.Auth.Database.DSN
 	if dsn == "" {
 		// Установим значение по умолчанию для SQLite
 		dsn = "file:auth.db?cache=shared&mode=rwc"

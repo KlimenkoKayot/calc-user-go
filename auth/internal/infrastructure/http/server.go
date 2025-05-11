@@ -7,9 +7,9 @@ import (
 
 	"github.com/klimenkokayot/avito-go/libs/logger"
 	"github.com/klimenkokayot/avito-go/libs/router"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/interfaces/http/handlers"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type AuthServer struct {
@@ -24,7 +24,7 @@ type AuthServer struct {
 func NewAuthServer(handler *handlers.AuthHandler, cfg *config.Config, logger logger.Logger) (domain.Server, error) {
 	logger.Info("Инициализация сервера.")
 	router, err := router.NewAdapter(&router.Config{
-		Name: cfg.Router,
+		Name: cfg.Auth.Router,
 	})
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func NewAuthServer(handler *handlers.AuthHandler, cfg *config.Config, logger log
 		handler,
 		router,
 		logger,
-		cfg.Server.ReadTimeout,
-		cfg.Server.WriteTimeout,
+		cfg.Auth.Http.ReadTimeout,
+		cfg.Auth.Http.WriteTimeout,
 		cfg,
 	}
 	err = server.setupRoutes()
@@ -73,6 +73,6 @@ func (a *AuthServer) setupRoutes() error {
 }
 
 func (a *AuthServer) Run() error {
-	a.logger.Info("Сервер запущен.", logger.Field{Key: "port", Value: a.cfg.Server.Port})
-	return http.ListenAndServe(fmt.Sprintf(":%d", a.cfg.Server.Port), a.router)
+	a.logger.Info("Сервер запущен.", logger.Field{Key: "port", Value: a.cfg.Auth.Http.Port})
+	return http.ListenAndServe(fmt.Sprintf(":%d", a.cfg.Auth.Http.Port), a.router)
 }

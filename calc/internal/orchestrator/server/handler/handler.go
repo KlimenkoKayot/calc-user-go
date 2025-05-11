@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 
 	"github.com/gorilla/mux"
-	config "github.com/klimenkokayot/calc-net-go/internal/orchestrator/config"
 	service "github.com/klimenkokayot/calc-net-go/internal/orchestrator/service"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/models"
 	"github.com/klimenkokayot/calc-net-go/internal/shared/utils"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type Expressions struct {

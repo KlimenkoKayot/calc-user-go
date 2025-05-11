@@ -3,9 +3,9 @@ package service
 import (
 	"net/url"
 
-	"github.com/klimenkokayot/calc-user-go/api-gateway/config"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/internal/domain"
 	"github.com/klimenkokayot/calc-user-go/api-gateway/pkg/logger"
+	"github.com/klimenkokayot/calc-user-go/config"
 )
 
 type ProxyService struct {
@@ -21,13 +21,13 @@ func (p *ProxyService) Proxy(path string) (string, error) {
 	switch path {
 	case "/api/v1/register":
 		p.logger.Debug("Редирект в /api/v1/register")
-		return url.JoinPath(p.config.AuthURL, "auth", "register")
+		return url.JoinPath(p.config.ApiGateway.Services.Auth.URL, "auth", "register")
 	case "/api/v1/login":
 		p.logger.Debug("Редирект в /api/v1/login")
-		return url.JoinPath(p.config.AuthURL, "auth", "login")
+		return url.JoinPath(p.config.ApiGateway.Services.Auth.URL, "auth", "login")
 	default:
 		p.logger.Debug("Редирект в Calc.")
-		return url.JoinPath(p.config.CalcURL, path)
+		return url.JoinPath(p.config.ApiGateway.Services.Auth.URL, path)
 	}
 }
 

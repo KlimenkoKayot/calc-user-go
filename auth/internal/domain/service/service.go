@@ -5,10 +5,10 @@ import (
 	"sync"
 
 	"github.com/klimenkokayot/avito-go/libs/logger"
-	"github.com/klimenkokayot/avito-go/services/auth/config"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/model"
 	"github.com/klimenkokayot/avito-go/services/auth/internal/domain/ports"
 	domain "github.com/klimenkokayot/avito-go/services/auth/internal/domain/repository"
+	"github.com/klimenkokayot/calc-user-go/config"
 	"golang.org/x/crypto/bcrypt"
 )
 
