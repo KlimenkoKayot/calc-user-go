@@ -55,24 +55,13 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	accessToken, refreshToken, err := h.authService.Register(user.Login, user.Secret)
+	_, _, err = h.authService.Register(user.Login, user.Secret)
 	if err != nil {
 		h.logger.Warn("Ошибка при регистрации пользователя", logger.Field{
 			Key:   "err",
 			Value: err.Error(),
 		})
 		w.WriteHeader(http.StatusUnauthorized)
-		json.NewEncoder(w).Encode(fmt.Errorf("ошибка при регистрации: %w", err))
-		return
-	}
-
-	err = h.updateTokenPair(w, accessToken, refreshToken)
-	if err != nil {
-		h.logger.Error("500 !!! Ошибка при регистрации аккаунта", logger.Field{
-			Key:   "err",
-			Value: err.Error(),
-		})
-		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(fmt.Errorf("ошибка при регистрации: %w", err))
 		return
 	}
