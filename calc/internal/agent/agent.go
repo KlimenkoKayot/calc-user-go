@@ -9,8 +9,7 @@ import (
 
 // Структура агента, нужен порт и экземпляр сервиса
 type Agent struct {
-	Service          *service.AgentService
-	OrchestratorPort int
+	Service *service.AgentService
 }
 
 // Создание нового агента
@@ -24,7 +23,6 @@ func NewAgent() (*Agent, error) {
 	service := service.NewAgentService(*config)
 	return &Agent{
 		service,
-		config.Calc.Orchestrator.Port,
 	}, nil
 }
 

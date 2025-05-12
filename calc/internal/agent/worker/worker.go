@@ -1,6 +1,7 @@
 package agent
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -62,7 +63,7 @@ func (w *Worker) Solve(task *models.Task) *models.TaskResult {
 func (w *Worker) Process() error {
 	task, err := transport.GetTask(w.Client, w.URL)
 	if err != nil {
-		return err
+		return fmt.Errorf("Ошибка в transport.GetTask: %w", err)
 	}
 	result := w.Solve(task)
 	err = transport.PostTask(w.Client, w.URL, result)
