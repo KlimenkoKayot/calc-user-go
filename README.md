@@ -255,9 +255,14 @@ curl -X POST http://localhost:8080/api/v1/login \
 3. Добавление выражения (с токеном):
 ```bash
 curl -X POST http://localhost:8080/api/v1/calculate \
-  -H "Authorization: Bearer eyJhbGciOi..." \
   -H "Content-Type: application/json" \
   -d '{"expression": "(2+2)*5"}'
+```
+
+
+4. Получение списка выражений (с токеном):
+```bash
+curl -X GET http://localhost:8080/api/v1/expressions
 ```
 
 ---
