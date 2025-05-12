@@ -28,25 +28,29 @@ func main() {
 		log.Fatal(err)
 	}
 
-	service, err := service.NewProxyService(logger, cfg)
+	loggerService := logger.WithLayer("SERVICE")
+	service, err := service.NewProxyService(loggerService, cfg)
 	if err != nil {
 		logger.Fatal(err.Error())
 		return
 	}
 
-	handler, err := handler.NewProxyService(service, logger, cfg)
+	loggerHandler := logger.WithLayer("HANDLER")
+	handler, err := handler.NewProxyHandler(service, loggerHandler, cfg)
 	if err != nil {
 		logger.Fatal(err.Error())
 		return
 	}
 
-	server, err := server.NewProxyServer(handler, logger, cfg)
+	loggerServer := logger.WithLayer("SERVER")
+	server, err := server.NewProxyServer(handler, loggerServer, cfg)
 	if err != nil {
 		logger.Fatal(err.Error())
 		return
 	}
 
-	app, err := app.NewProxyApplication(server, logger, cfg)
+	loggerApp := logger.WithLayer("APP")
+	app, err := app.NewProxyApplication(server, loggerApp, cfg)
 	if err != nil {
 		logger.Fatal(err.Error())
 		return
