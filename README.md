@@ -28,7 +28,7 @@
 
 ## Архитектура системы
 
-![Архитектура системы](https://github.com/KlimenkoKayot/calc-net-go/blob/main/web/static/img/pattern.jpg)
+![Архитектура системы](https://github.com/KlimenkoKayot/calc-user-go/blob/main/calc/web/static/img/pattern.jpg)
 
 ### API Gateway
 - Единая точка входа для всех запросов
