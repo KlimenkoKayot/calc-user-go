@@ -32,8 +32,8 @@ func (p *ProxyService) Proxy(path string) (string, error) {
 }
 
 func NewProxyService(logger logger.Logger, config *config.Config) (domain.ProxyService, error) {
-	logger.Info("Инициализация прокси сервиса.")
-	logger.OK("Прокси сервис успешно иницилизирован.")
+	logger.Info("Инициализация прокси-сервиса.")
+	logger.OK("Прокси-сервис успешно иницилизирован.")
 	return &ProxyService{
 		logger: logger,
 		config: config,

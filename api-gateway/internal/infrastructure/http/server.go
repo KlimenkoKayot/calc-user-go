@@ -19,21 +19,27 @@ type ProxyServer struct {
 }
 
 func (p *ProxyServer) setupRoutes() {
+	p.logger.Info("Установка обработчиков.")
 	p.mux.PathPrefix("/").Handler(p.handler)
 }
 
 func (p *ProxyServer) setupMiddlewares() {
+	p.logger.Info("Установка middlewares.")
 	p.mux.Use(middleware.RequestMiddleware)
 }
 
 func (p *ProxyServer) Run() error {
+	p.logger.Info("Запуск прокси-сервера.")
 	p.setupMiddlewares()
 	p.setupRoutes()
+	p.logger.OK("Прокси-сервер успешно запущен.")
 	return http.ListenAndServe(fmt.Sprintf(":%d", p.config.ApiGateway.Http.Port), p.mux)
 }
 
 func NewProxyServer(handler domain.ProxyHandler, logger logger.Logger, config *config.Config) (domain.ProxyServer, error) {
+	logger.Info("Инициализация прокси-сервера.")
 	mux := mux.NewRouter()
+	logger.OK("Прокси-сервер успешно инициализирован.")
 	return &ProxyServer{
 		mux:     mux,
 		handler: handler,

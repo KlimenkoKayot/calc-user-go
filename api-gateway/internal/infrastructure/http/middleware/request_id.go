@@ -9,7 +9,7 @@ import (
 func RequestMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		uuid := uuid.NewString()
-		r.Header.Set("request_id", uuid)
+		r.Header.Set("RequestID", uuid)
 		next.ServeHTTP(w, r)
 	})
 }
